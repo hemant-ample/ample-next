@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {Container} from '@mui/material'
-import Navbar from '../src/Navbar/Navbar'
-
+import { Container } from '@mui/material'
+import Contactus from '../src/Contactus'
 
 export default function Index() {
   return (
-    <Navbar/>
+    <>
+      <Contactus/>
+    </>
   );
 }

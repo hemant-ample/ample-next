@@ -3,13 +3,14 @@ import { Box, Container, Menu, MenuItem, Typography, Button, AppBar, Toolbar, Ic
 import ProductsDrop from './ProductsDrop';
 import ResourcesDrop from './ResourcesDrop';
 import AmpleLogo from '../../assets/AmpleLogo.svg'
-
+import Image from 'next/Image'
 const Navbar = () => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1,height:"auto",p:2,boxShadow:'2px 0px 2px #ccc' }}>
             <AppBar elevation={0} position="static" sx={{ backgroundColor: "#fff" }}>
                 <Toolbar>
-                    <Typography sx={{ flexGrow: 1, color: "#000" }}>
+                    <Image src={AmpleLogo} alt="ampleLogo" width='80rem' height='80rem'/>
+                    <Typography sx={{ flexGrow: 1,fontSize:'28px',fontWeight:600, color: "#000" }}>
                         Ample AI
                     </Typography>
                     <ProductsDrop/>

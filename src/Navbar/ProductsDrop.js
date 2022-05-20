@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, Menu, MenuItem } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -18,14 +19,16 @@ const StyledMenu = styled((props) => (
 ))(({ theme }) => ({
     '& .MuiPaper-root': {
         borderRadius: 6,
-        marginTop: theme.spacing(3),
+
         minWidth: '200px',
-        boxShadow:
-            'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+        boxShadow: '0px 0px 10px #cccccc',
         '& .MuiMenu-list': {
             padding: '4px 0',
+
         },
         '& .MuiMenuItem-root': {
+            fontWeight:600,
+            fontSize:'14px',
             margin: "5px",
             '& .MuiSvgIcon-root': {
                 marginRight: theme.spacing(1.5),
@@ -81,7 +84,7 @@ const ProductsDrop = () => {
     const handleResourcesClose = (e) => {
         if (e.currentTarget.localName !== "ul") {
             const menu = document.getElementById("resources-menu").children[2];
-            console.log(document.getElementById("resources-menu").children)
+
             const menuBoundary = {
                 left: menu.offsetLeft,
                 top: e.currentTarget.offsetTop + e.currentTarget.offsetHeight,
@@ -109,7 +112,8 @@ const ProductsDrop = () => {
                 aria-expanded={open ? 'true' : undefined}
                 onMouseOver={handleClick}
                 style={{ zIndex: 1301 }}
-                sx={{ fontSize: '14px',color:"#000",fontWeight:"600" }}
+                sx={{ fontSize: '14px', color: "#000", fontWeight: "600",mr:5 }}
+                endIcon={<KeyboardArrowDownIcon/>}
             >
                 Products
             </Button>
@@ -119,12 +123,18 @@ const ProductsDrop = () => {
                 open={open}
                 onClose={handleClose}
                 MenuListProps={{
-                    onMouseLeave: (e) => handleClose(e)
+                    onMouseLeave: (e) => handleClose(e),
+                    sx: {
+                        width: 230,
+                        '& .MuiMenuItem-root': {
+                            whiteSpace: 'normal',
+                        },
+                    },
                 }}
             >
                 {
                     products.map(prod => (
-                        <MenuItem disableRipple onClick={handleClose}>{prod}</MenuItem>
+                        <MenuItem key={prod} disableRipple onClick={handleClose}>{prod}</MenuItem>
                     ))
                 }
             </StyledMenu>
@@ -136,7 +146,8 @@ const ProductsDrop = () => {
                 aria-expanded={resourcesOpen ? 'true' : undefined}
                 onMouseOver={handleResourcesClick}
                 style={{ zIndex: 1301 }}
-                sx={{ fontSize: '14px',color:"#000",fontWeight:"600" }}
+                sx={{ fontSize: '14px', color: "#000", fontWeight: "600" }}
+                endIcon={<KeyboardArrowDownIcon/>}
             >
                 Resources
             </Button>
