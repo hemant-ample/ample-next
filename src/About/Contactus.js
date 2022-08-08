@@ -1,6 +1,20 @@
 import React from 'react'
-import { Box, Container, Typography, TextField,TextareaAutosize  } from '@mui/material'
+import { Box, Container, Typography, TextField, TextareaAutosize, Button } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles';
+
+const StyledButton =styled((props) => (
+    <Button
+        {...props}
+    />
+))(({ theme }) => ({
+        backgroundColor: '#7F265B',
+        color: '#fff',
+        '&:hover': {
+            backgroundColor: '#270017 !important',
+            color: '#fff',
+        },
+    }
+));
 const StyledTextField = styled((props) => (
     <TextField
         {...props}
@@ -8,8 +22,8 @@ const StyledTextField = styled((props) => (
 ))(({ theme }) => ({
     '& .MuiOutlinedInput-root': {
         '& fieldset': {
-            border: '1px solid #E5E5E5',
-            borderRadius:0
+            border: '2px solid #E5E5E5',
+            borderRadius: 0
         },
         '&.Mui-focused fieldset': {
             borderColor: '#E40088',
@@ -20,14 +34,14 @@ const StyledTextField = styled((props) => (
 const Contactus = () => {
     return (
         <Box>
-            <Container>
-                <Typography>
+            <Container maxWidth='md' sx={{ my: 5 }}>
+                <Typography sx={{ fontSize: '22px', fontWeight: '400', mb: 4 }}>
                     Contact us
                 </Typography>
-                <Typography>
+                <Typography sx={{ fontSize: '26px', fontWeight: '600', mb: 2 }}>
                     Send us your feedback
                 </Typography>
-                <Typography>
+                <Typography sx={{ fontSize: '14px', fontWeight: '500', mb: 3 }}>
                     Send us a message at team@ample.ai or fill out the form below.
                 </Typography>
                 <Typography
@@ -46,7 +60,7 @@ const Contactus = () => {
                     name="name"
                     type='text'
                     sx={{ backgroundColor: '#ffffff' }}
-                    
+
                 />
                 <Typography
                     sx={{
@@ -70,16 +84,48 @@ const Contactus = () => {
                         fontSize: '14px',
                         fontWeight: 600,
                         mt: '3%',
-                        mb:1
+                        mb: 1
                     }}
                 >
                     Message
                 </Typography>
                 <TextareaAutosize
                     minRows={8}
-                    style={{width:"100%",border: '1px solid #E5E5E5',borderRadius:0}}
+                    style={{ 
+                        width: "100%", 
+                        border: '2px solid #E5E5E5', 
+                        borderRadius: 0,
+                        '&:hover': {
+                            border: '2px solid #E5E5E5', 
+                            borderRadius: 0,
+                        },
+                        '&:focus': {
+                            border: '2px solid #E40088', 
+                            borderRadius: 0,
+                        }       
+                    }}
                 />
-
+                <StyledButton
+                    variant="contained"
+                    color="info"
+                    sx={{
+                        borderRadius: 12,
+                        mt: 5,
+                        pt: 2,
+                        pb:1.5,
+                        px: '5%',
+                        backgroundColor: "#7F265B",
+                    }}
+                >
+                    <Typography
+                        sx={{
+                            fontSize: 14,
+                            fontWeight: 600
+                        }}
+                    >
+                        SUBMIT
+                    </Typography>
+                </StyledButton>
             </Container>
         </Box>
     )

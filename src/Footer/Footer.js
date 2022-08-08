@@ -64,7 +64,7 @@ const Footer = () => {
                 </Grid>
             </Box>
 
-            <Typography align='center' sx={{ fontStyle: 'italic', color: "#888", fontSize: '12px' }}>
+            <Typography align='center' sx={{ fontStyle: 'italic', color: "#888", fontSize: '12px',mb:8 }}>
                 <CopyrightIcon sx={{ fontSize: "14px" }} /> 2022 Ample AI. All rights reserved.
             </Typography>
 

@@ -1,11 +1,17 @@
 import * as React from 'react';
 import { Container } from '@mui/material'
-import Contactus from '../src/Contactus'
-
+import Contactus from '../src/About/Contactus'
+import Aboutus from '../src/About/Aboutus';
+import Classification from '../src/Classification/Classification';
+import Clustering from "../src/Clustering/Clustering"
 export default function Index() {
   return (
     <>
-      <Contactus/>
+      {/* <Aboutus/>
+      <Contactus/> */}
+
+      {/* <Classification/> */}
+      <Clustering/>
     </>
   );
 }
