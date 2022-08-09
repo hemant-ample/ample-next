@@ -7,10 +7,10 @@ const StyledButton =styled((props) => (
         {...props}
     />
 ))(({ theme }) => ({
-        backgroundColor: '#7F265B',
+        backgroundColor: '#EB9940 !important',
         color: '#fff',
         '&:hover': {
-            backgroundColor: '#270017 !important',
+            backgroundColor: '#EB9940 !important',
             color: '#fff',
         },
     }
@@ -33,8 +33,8 @@ const StyledTextField = styled((props) => (
 
 const Contactus = () => {
     return (
-        <Box>
-            <Container maxWidth='md' sx={{ my: 5 }}>
+        <Box sx={{backgroundColor:'#FFFDEC'}}>
+            <Container maxWidth='md' sx={{ py: 5 }}>
                 <Typography sx={{ fontSize: '22px', fontWeight: '400', mb: 4 }}>
                     Contact us
                 </Typography>

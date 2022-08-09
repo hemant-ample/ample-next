@@ -1,5 +1,6 @@
 import React from 'react'
 import { Typography, Box, Container } from '@mui/material'
+import Contactus from './Contactus'
 
 const Aboutus = () => {
     return (
@@ -36,6 +37,7 @@ const Aboutus = () => {
                     </Typography>
                 </Container>
             </Box>
+            <Contactus/>
         </Box>
     )
 }
