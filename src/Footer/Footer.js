@@ -10,7 +10,7 @@ const Footer = () => {
     const company = ['About us', 'Terms', 'Privacy', 'Cookie Policy']
     return (
         <Box sx={{}}>
-            <Box sx={{ width: "100%", height: "75vh", display: "flex", alignItems: "center", }}>
+            <Box sx={{ width: "100%", height: "80vh", display: "flex", alignItems: "center", }}>
                 <Grid container sx={{}} spacing={2}>
                     <Grid item xs={12} sm={12} md={12} lg={5} xl={5}>
                         <Container sx={{ width: "80%" }}>
@@ -64,7 +64,7 @@ const Footer = () => {
                 </Grid>
             </Box>
 
-            <Typography align='center' sx={{ fontStyle: 'italic', color: "#888", fontSize: '12px',mb:8 }}>
+            <Typography align='center' sx={{ fontStyle: 'italic', color: "#888", fontSize: '12px',mb:8,mt:2 }}>
                 <CopyrightIcon sx={{ fontSize: "14px" }} /> 2022 Ample AI. All rights reserved.
             </Typography>
 

@@ -13,8 +13,9 @@ export default function Index() {
       {/* <Aboutus/>
       <Classification/>
       <Clustering/> 
-      <Prediction/>  */}
-      <CookiePolicy/>
+      <Prediction/>  
+      <CookiePolicy/> */}
+      <Terms/>
     </>
   );
 }
