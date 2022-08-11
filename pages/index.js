@@ -7,6 +7,7 @@ import Prediction from '../src/Prediction/Prediction';
 import CookiePolicy from '../src/CookiePolicy/CookiePolicy';
 import Privacy from '../src/Privacy/Privacy';
 import Terms from '../src/Terms/Terms'
+import Home from '../src/Home/Home'
 export default function Index() {
   return (
     <>
@@ -14,8 +15,9 @@ export default function Index() {
       <Classification/>
       <Clustering/> 
       <Prediction/>  
-      <CookiePolicy/> */}
-      <Terms/>
+      <CookiePolicy/> 
+      <Terms/> */}
+      <Home/>
     </>
   );
 }
