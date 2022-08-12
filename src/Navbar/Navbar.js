@@ -6,7 +6,7 @@ import AmpleLogo from '../../assets/AmpleLogo.svg'
 import Image from 'next/Image'
 const Navbar = () => {
     return (
-        <Box sx={{ flexGrow: 1,height:"auto",p:2,boxShadow:'2px 0px 2px #ccc' }}>
+        <Box sx={{ flexGrow: 1,height:"auto",p:2, }}>
             <AppBar elevation={0} position="static" sx={{ backgroundColor: "#fff" }}>
                 <Toolbar>
                     <Image src={AmpleLogo} alt="ampleLogo" width='80rem' height='80rem'/>

@@ -28,9 +28,6 @@ const ResourcesDrop = () => {
 
         setResAnchorEl(null);
     };
-
-    
-
     return (
         <>
             <Button
@@ -53,7 +50,6 @@ const ResourcesDrop = () => {
                 }}
             >
                 <MenuItem onClick={handleResourcesClose}>Blog</MenuItem>
-                
             </Menu>
         </>
     )

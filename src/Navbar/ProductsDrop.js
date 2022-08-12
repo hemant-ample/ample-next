@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Menu, MenuItem } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Link from 'next/link'
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -27,8 +28,8 @@ const StyledMenu = styled((props) => (
 
         },
         '& .MuiMenuItem-root': {
-            fontWeight:600,
-            fontSize:'14px',
+            fontWeight: 600,
+            fontSize: '14px',
             margin: "5px",
             '& .MuiSvgIcon-root': {
                 marginRight: theme.spacing(1.5),
@@ -73,7 +74,28 @@ const ProductsDrop = () => {
         setAnchorEl(null);
     };
 
-    const products = ['AutoML Prediction - Make effective business decisions', 'AutoML Classification', 'AutoML Clustering - Gain deep insights about your customers', 'Why Ample AI', 'How it works'];
+    const products = [
+        {
+            text: 'AutoML Prediction - Make effective business decisions',
+            link: '/prediction'
+        },
+        {
+            text: 'AutoML Classification',
+            link: '/classification'
+        },
+        {
+            text: 'AutoML Clustering - Gain deep insights about your customers',
+            link: '/clustering'
+        },
+        {
+            text: 'Why Ample AI',
+            link: '/#'
+        },
+        {
+            text: 'How it works',
+            link: '/#'
+        },
+    ];
 
 
     const resourcesOpen = Boolean(resAnchorEl);
@@ -112,8 +134,8 @@ const ProductsDrop = () => {
                 aria-expanded={open ? 'true' : undefined}
                 onMouseOver={handleClick}
                 style={{ zIndex: 1301 }}
-                sx={{ fontSize: '14px', color: "#000", fontWeight: "600",mr:5 }}
-                endIcon={<KeyboardArrowDownIcon/>}
+                sx={{ fontSize: '14px', color: "#000", fontWeight: "600", mr: 5 }}
+                endIcon={<KeyboardArrowDownIcon />}
             >
                 Products
             </Button>
@@ -134,7 +156,11 @@ const ProductsDrop = () => {
             >
                 {
                     products.map(prod => (
-                        <MenuItem key={prod} disableRipple onClick={handleClose}>{prod}</MenuItem>
+                        <Link href={prod.link} style={{textDecoration:'none'}}>
+                            <MenuItem key={prod.text} disableRipple onClick={handleClose}>
+                                {prod.text}
+                            </MenuItem>
+                        </Link>
                     ))
                 }
             </StyledMenu>
@@ -147,7 +173,7 @@ const ProductsDrop = () => {
                 onMouseOver={handleResourcesClick}
                 style={{ zIndex: 1301 }}
                 sx={{ fontSize: '14px', color: "#000", fontWeight: "600" }}
-                endIcon={<KeyboardArrowDownIcon/>}
+                endIcon={<KeyboardArrowDownIcon />}
             >
                 Resources
             </Button>
