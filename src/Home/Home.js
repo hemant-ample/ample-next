@@ -1,7 +1,10 @@
 import React from 'react'
-import { Box, Grid, Typography, Container, Stack, Button } from '@mui/material'
+import { Box, Grid, Typography, Container, Stack, Button, Tabs, Tab } from '@mui/material'
 import Image from 'next/Image'
 import { styled, alpha } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { withStyles, makeStyles } from '@mui/styles'
+import Link from 'next/Link'
 
 const StyledButton = styled((props) => (
     <Button
@@ -16,7 +19,59 @@ const StyledButton = styled((props) => (
     },
 }
 ));
-const Home = () => {
+
+const Styles = theme => ({
+    customStyleOnTab: {
+        color: "#000",
+        alignItems: 'start',
+        textAlign: 'start',
+    },
+    customStyleOnActiveTab: {
+        alignItems: 'start',
+        textAlign: 'start',
+
+    },
+    activeTab: {
+        color: '#000',
+        alignItems: 'start',
+        textAlign: 'start',
+        boxShadow: 'inset 0 0 0 3px #68D9CF'
+    }
+})
+
+const tabDetails = [
+    {
+        title: 'Explore',
+        description: 'Bring your tabular data to create high performing models. Exploration enables you to discover the patterns in the data using commonly used data science techniques. View the data types of your tabular data, get the counts, uniques, and frequency for numeric and categorical columns. Analyze the summary statistics to ensure its representative and well distributed to reduce bias.',
+    },
+    {
+        title: 'Transform',
+        description: 'Automatically curate data using many transformation functions of the Ample AI platform. Add and drop columns and row in your tabular data. Change data type or remove empty values. Greatly speed up preparing quality data set for the next step – training.',
+    },
+    {
+        title: 'Train',
+        description: 'Skip the time consuming feature engineering, algorithm selection and hyperparameter tuning. Create a high performing model with the automated feature selection and hyperparameter tuning. Our ensemble training selects the best model based on performance metrics.',
+    },
+    {
+        title: 'Evaluate',
+        description: 'Review the comprehensive performance metrics generated from the test data. It’s the simplest way to evaluate the performance of the model with the data not seen before by the model. ',
+    },
+    {
+        title: 'Deploy',
+        description: 'Deploy the model to production with one click deployment. The deployment automatically generates a REST API for the model. Integrate the model output with your applications using the REST API. Generating insights for your business is now whole lot easier.',
+    },
+    {
+        title: 'Manage',
+        description: 'Maintain and manage the model with model lifecycle. Easily create new versions of the model using new or existing training data. ',
+    },
+
+]
+const Home = (props) => {
+    const [selectedTab, setSelectedTab] = React.useState(0);
+    const { classes } = props;
+    const handleTabChange = (event, newValue) => {
+        setSelectedTab(newValue);
+    }
     return (
         <Box>
             <Box sx={{ mb: 5 }}>
@@ -171,7 +226,7 @@ const Home = () => {
                 </Grid>
             </Box>
 
-            <Box sx={{ mt: 10,  backgroundImage: "linear-gradient(to bottom, #f2eff6, #f5f3f8, #f8f7fb, #fbfbfd, #ffffff)" }}>
+            <Box sx={{ mt: 10, backgroundImage: "linear-gradient(to bottom, #f2eff6, #f5f3f8, #f8f7fb, #fbfbfd, #ffffff)" }}>
                 <div style={{ height: "100px", overflow: "hidden" }} >
                     <svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{ height: "100%", width: "100%" }}>
                         <path d="M-3.67,64.63 C128.95,35.02 332.67,70.55 502.54,52.78 L500.00,150.00 L0.00,150.00 Z" style={{ stroke: 'none', fill: "#F2EFF6" }}>
@@ -241,11 +296,123 @@ const Home = () => {
                             </Typography>
                         </Grid>
                     </Grid>
+
+                    <Box sx={{ mt: 20, minHeight: "100vh", }}>
+                        <Typography sx={{ fontSize: '30px', fontWeight: '400' }}>
+                            How It Works
+                        </Typography>
+                        <Typography sx={{ fontSize: '40px', fontWeight: '600' }}>
+                            Fully automated machine learning. Just bring your tabular data.
+                        </Typography>
+
+                        <Box sx={{ width: "100%", height: "auto" }}>
+                            <Box sx={{ float: 'left', width: '20%', borderRight: "1px solid", height: "100%", justify: 'flex-start' }}>
+
+                                <Tabs value={selectedTab} orientation='vertical'
+                                    onChange={handleTabChange}
+                                    classes={{ indicator: classes.customStyleOnActiveTab }}
+                                    indicatorColor={'#fff'}
+                                    sx={{
+                                        "& button:hover": {
+                                            boxShadow: 'inset 0 0 0 3px #68D9CF'
+                                        },
+                                    }}
+                                >
+                                    {
+                                        tabDetails.map(tab => (
+                                            < Tab
+                                                key={tab.title}
+                                                disableRipple
+                                                sx={{ my: 2 }}
+                                                className={selectedTab === tabDetails.indexOf(tab) ? classes.activeTab : classes.customStyleOnTab}
+                                                label={
+                                                    <Box>
+                                                        <Typography>
+                                                            {tab.title}
+                                                        </Typography>
+                                                    </Box>
+                                                }
+                                            />
+                                        ))
+                                    }
+                                </Tabs>
+
+                            </Box>
+                            <Box sx={{ float: 'right', width: '80%', height: "100%" }}>
+                                <Typography>
+                                    {tabDetails[selectedTab].description}
+                                </Typography>
+                            </Box>
+                        </Box>
+                    </Box>
                 </Container>
+
+                <Box sx={{ mt: 10, width: '100%', backgroundImage: "linear-gradient(to bottom, #F7FBFE, #f9fcfe, #fbfcfe, #fdfdfe, #fefefe)" }}>
+                    <Container sx={{ pt: 10, }}>
+                        <Typography sx={{ fontSize: '30px', fontWeight: '400' }}>
+                            How It Works
+                        </Typography>
+                        <Typography sx={{ fontSize: '40px', fontWeight: '600' }}>
+                            Fully automated machine learning. Just bring your tabular data.
+                        </Typography>
+                        <Grid container spacing={5}>
+                            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center" }}>
+                                    <Image src='/home7.png' width={'300px'} height={'200px'} />
+                                </Box>
+                                <Link href='/prediction' style={{textDecoration:'none',}}>
+                                    <Typography align='center' sx={{ fontSize: "20px", mt: 3,cursor:'pointer' }}>
+                                        AUTOML <b>PREDICTION</b>
+                                    </Typography>
+                                </Link>
+                                <Typography align='center' sx={{ fontSize: "18px", mt: 3 }}>
+                                    Use the power of predictive analytics to make a sales forecast or predict customer lifetime value. Put your data to work with machine learning to make smarter business decisions.
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center" }}>
+                                    <Image src='/home8.png' width={'300px'} height={'200px'} />
+                                </Box>
+                                <Link href='/classification' style={{textDecoration:'none',}}>
+                                    <Typography align='center' sx={{ fontSize: "20px", mt: 3,cursor:'pointer' }}>
+                                        AUTOML <b>CLASSIFICATION</b>
+                                    </Typography>
+                                </Link>
+                                <Typography align='center' sx={{ fontSize: "18px", mt: 3 }}>
+                                    Enable efficient data-driven decision making in your business processes and customer experience. Auto-categorize financial transactions or predict likelihood of product purchase, anticipate customer needs to deliver what your customers expect.
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
+                                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: "center" }}>
+                                    <Image src='/home9.png' width={'300px'} height={'200px'} />
+                                </Box>
+                                <Link href='/clustering' style={{textDecoration:'none',}}>
+                                    <Typography align='center' sx={{ fontSize: "20px", mt: 3,cursor:'pointer' }}>
+                                        AUTOML <b>CLUSTERING</b>
+                                    </Typography>
+                                </Link>
+                                <Typography align='center' sx={{ fontSize: "18px", mt: 3 }}>
+                                    Create targeted marketing campaign or recommend the best offer. Gain deep understanding about your customers to enhance customer experience, discover opportunities and retain customers.
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Container>
+                </Box>
+                <Box sx={{ mt: 10, backgroundColor: '#F3F3FF' }}>
+                    <Container sx={{ pt: 10, }}>
+                        <Typography sx={{ fontSize: '30px', fontWeight: '400' }}>
+                            Join Waitlist
+                        </Typography>
+                        <Typography sx={{ fontSize: '40px', fontWeight: '600' }}>
+                            Chart the future of data with us
+                        </Typography>
+                    </Container>
+                </Box>
+
             </Box>
 
         </Box>
     )
 }
 
-export default Home
+export default withStyles(Styles, { withTheme: true })(Home);
