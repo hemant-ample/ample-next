@@ -2,7 +2,6 @@ import React from 'react'
 import { Box, Grid, Typography, Container, TextField, TextareaAutosize, Stack, Button, Tabs, Tab } from '@mui/material'
 import Image from 'next/Image'
 import { styled, alpha } from '@mui/material/styles';
-import { withStyles, makeStyles } from '@mui/styles'
 import Link from 'next/Link'
 
 const StyledButton = styled((props) => (
@@ -33,24 +32,6 @@ const StyledTextField = styled((props) => (
         },
     },
 }));
-const Styles = theme => ({
-    customStyleOnTab: {
-        color: "#000",
-        alignItems: 'start',
-        textAlign: 'start',
-    },
-    customStyleOnActiveTab: {
-        alignItems: 'start',
-        textAlign: 'start',
-
-    },
-    activeTab: {
-        color: '#000',
-        alignItems: 'start',
-        textAlign: 'start',
-        boxShadow: 'inset 0 0 0 3px #68D9CF'
-    }
-})
 
 const tabDetails = [
     {
@@ -81,10 +62,13 @@ const tabDetails = [
 ]
 const Home = (props) => {
     const [selectedTab, setSelectedTab] = React.useState(0);
-    const { classes } = props;
+    const [didHover, setDidHover] = React.useState(false);
+    const [didFocus, setDidFocus] = React.useState(false);
     const handleTabChange = (event, newValue) => {
         setSelectedTab(newValue);
     }
+
+    console.log(didFocus)
     return (
         <Box>
             <Box sx={{ mb: 5 }}>
@@ -316,18 +300,37 @@ const Home = (props) => {
                     <Typography sx={{ fontSize: '30px', fontWeight: '400' }}>
                         How It Works
                     </Typography>
-                    <Typography sx={{ fontSize: '40px', fontWeight: '600' }}>
+                    <Typography sx={{ fontSize: '40px', fontWeight: '600', mb: 5 }}>
                         Fully automated machine learning. Just bring your tabular data.
                     </Typography>
 
                     <Box sx={{ width: "100%", height: "auto" }}>
-                        <Box sx={{ float: 'left', width: '20%', borderRight: "1px solid", height: "100%", justify: 'flex-start' }}>
+                        <Box sx={{ float: 'left', width: '20%', height: "100%", justify: 'flex-start' }}>
 
                             <Tabs value={selectedTab} orientation='vertical'
                                 onChange={handleTabChange}
-                                classes={{ indicator: classes.customStyleOnActiveTab }}
-                                indicatorColor={'#fff'}
+                                TabIndicatorProps={{
+                                    style: {
+                                        display: "none",
 
+                                    },
+                                }}
+                                sx={{
+                                    "& button": { border: '2px solid transparent' },
+                                    "& button:hover": {
+                                        borderTop: '2px solid #68D9CF',
+                                        borderLeft: '2px solid #68D9CF',
+                                        borderBottom: '2px solid #68D9CF'
+                                    },
+                                    "& button:focus": {
+                                        borderTop: '2px solid #68D9CF',
+                                        borderLeft: '2px solid #68D9CF',
+                                        borderBottom: '2px solid #68D9CF',
+                                        borderRight: '10px solid #fff',
+                                        mr: '-4px',
+                                    },
+
+                                }}
                             >
                                 {
                                     tabDetails.map(tab => (
@@ -335,10 +338,9 @@ const Home = (props) => {
                                             key={tab.title}
                                             disableRipple
                                             sx={{ my: 2 }}
-                                            className={selectedTab === tabDetails.indexOf(tab) ? classes.activeTab : classes.customStyleOnTab}
                                             label={
-                                                <Box>
-                                                    <Typography>
+                                                <Box sx={{ width: "100%" }}>
+                                                    <Typography align='left' sx={{ color: "black !important" }}>
                                                         {tab.title}
                                                     </Typography>
                                                 </Box>
@@ -349,16 +351,16 @@ const Home = (props) => {
                             </Tabs>
 
                         </Box>
-                        <Box sx={{ float: 'right', width: '80%', height: "100%", p: 4 }}>
+                        <Box sx={{ float: 'right', width: '80%', minHeight: "80vh", boxShadow: "-1px 0 0 #DDDDDD", p: 4 }}>
                             <Typography>
                                 {tabDetails[selectedTab].description}
                             </Typography>
                         </Box>
                     </Box>
                 </Container>
-            </Box>
+            </Box >
 
-            <Box sx={{ mt: 10, width: '100%', backgroundImage: "linear-gradient(to bottom, #F7FBFE, #f9fcfe, #fbfcfe, #fdfdfe, #fefefe)" }}>
+            <Box sx={{ mt: 20, width: '100%', backgroundImage: "linear-gradient(to bottom, #F7FBFE, #f9fcfe, #fbfcfe, #fdfdfe, #fefefe)" }}>
                 <Container sx={{ pt: 10, }}>
                     <Typography sx={{ fontSize: '30px', fontWeight: '400' }}>
                         How It Works
@@ -428,24 +430,29 @@ const Home = (props) => {
                         sx={{ backgroundColor: '#ffffff', mt: 5 }}
                     />
 
-                    <TextareaAutosize
-                        minRows={8}
+                    <textarea
                         placeholder="Send us a note..."
+                        onMouseEnter={() => 
+                            !didFocus?setDidHover(true):null
+                        }
+                        onMouseLeave={() => setDidHover(false)}
+                        onFocus={() => {
+                            setDidHover(false)
+                            setDidFocus(true)
+                        }}
+                        onBlur={() => setDidFocus(false)}
                         style={{
                             marginTop: '30px',
                             width: "100%",
-                            border: '2px solid #E5E5E5',
+                            border: !didHover ? didFocus ? '2px solid red' : '2px solid #E5E5E5' : '2px solid #000',
+
                             borderRadius: 0,
-                            '&:hover': {
-                                border: '2px solid #E5E5E5',
-                                borderRadius: 0,
-                            },
-                            '&:focus': {
-                                border: '2px solid #E40088',
-                                borderRadius: 0,
+                            'textarea:focus': {
+                                borderColor: 'red'
                             }
                         }}
-                    />
+                    >
+                    </textarea>
                     <StyledButton
                         variant="contained"
                         color="info"
@@ -476,4 +483,4 @@ const Home = (props) => {
     )
 }
 
-export default withStyles(Styles, { withTheme: true })(Home);
+export default Home;
