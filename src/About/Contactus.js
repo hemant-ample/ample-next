@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container, Typography, TextField, TextareaAutosize, Button } from '@mui/material'
+import { Box, Container, Typography, TextField, Button } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles';
 
 const StyledButton =styled((props) => (
@@ -32,6 +32,9 @@ const StyledTextField = styled((props) => (
 }));
 
 const Contactus = () => {
+    const [didHover, setDidHover] = React.useState(false);
+    const [didFocus, setDidFocus] = React.useState(false);
+    const [message,setMessage] = React.useState(null);
     return (
         <Box sx={{backgroundColor:'#FFFDEC'}}>
             <Container maxWidth='md' sx={{ py: 5 }}>
@@ -89,22 +92,31 @@ const Contactus = () => {
                 >
                     Message
                 </Typography>
-                <TextareaAutosize
-                    minRows={8}
-                    style={{ 
-                        width: "100%", 
-                        border: '2px solid #E5E5E5', 
-                        borderRadius: 0,
-                        '&:hover': {
-                            border: '2px solid #E5E5E5', 
+                <textarea
+                        onMouseEnter={() => 
+                            !didFocus?setDidHover(true):null
+                        }
+                        onMouseLeave={() => setDidHover(false)}
+                        onFocus={() => {
+                            setDidHover(false)
+                            setDidFocus(true)
+                        }}
+                        onBlur={() => setDidFocus(false)}
+                        onChange={(e)=>setMessage(e.target.value)}
+                        rows={8}
+                        style={{
+                            marginTop: '30px',
+                            width: "100%",
+                            border: !didHover ? didFocus ? '2px solid #E40088' : '2px solid #E5E5E5' : '2px solid #000',
+                            outline:'none',
                             borderRadius: 0,
-                        },
-                        '&:focus': {
-                            border: '2px solid #E40088', 
-                            borderRadius: 0,
-                        }       
-                    }}
-                />
+                            fontSize:"16px",
+                            fontWeight:"400",
+                            padding:15,
+                            fontFamily: ['"Spartan"', 'Sans-serif'].join(','),
+                        }}
+                    >
+                    </textarea>
                 <StyledButton
                     variant="contained"
                     color="info"

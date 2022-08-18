@@ -64,9 +64,11 @@ const Home = (props) => {
     const [selectedTab, setSelectedTab] = React.useState(0);
     const [didHover, setDidHover] = React.useState(false);
     const [didFocus, setDidFocus] = React.useState(false);
+    const [message,setMessage] = React.useState(null);
     const handleTabChange = (event, newValue) => {
         setSelectedTab(newValue);
     }
+
 
     console.log(didFocus)
     return (
@@ -441,15 +443,19 @@ const Home = (props) => {
                             setDidFocus(true)
                         }}
                         onBlur={() => setDidFocus(false)}
+                        onChange={(e)=>setMessage(e.target.value)}
+                        rows={8}
                         style={{
                             marginTop: '30px',
                             width: "100%",
-                            border: !didHover ? didFocus ? '2px solid red' : '2px solid #E5E5E5' : '2px solid #000',
-
+                            border: !didHover ? didFocus ? '2px solid #E40088' : '2px solid #E5E5E5' : '2px solid #000',
+                            outline:'none',
                             borderRadius: 0,
-                            'textarea:focus': {
-                                borderColor: 'red'
-                            }
+                            fontSize:"16px",
+                            color:message?"#000":"#555555",
+                            fontWeight:"400",
+                            padding:15,
+                            fontFamily: ['"Spartan"', 'Sans-serif'].join(','),
                         }}
                     >
                     </textarea>
