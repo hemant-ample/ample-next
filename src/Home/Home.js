@@ -64,7 +64,7 @@ const Home = (props) => {
     const [selectedTab, setSelectedTab] = React.useState(0);
     const [didHover, setDidHover] = React.useState(false);
     const [didFocus, setDidFocus] = React.useState(false);
-    const [message,setMessage] = React.useState(null);
+    const [message, setMessage] = React.useState(null);
     const handleTabChange = (event, newValue) => {
         setSelectedTab(newValue);
     }
@@ -225,7 +225,7 @@ const Home = (props) => {
                 </Grid>
             </Box>
 
-            <Box sx={{ mt: 10, backgroundImage: "linear-gradient(to bottom, #f2eff6, #f5f3f8, #f8f7fb, #fbfbfd, #ffffff)" }}>
+            <Box id="WhyAmple" sx={{ mt: 10, backgroundImage: "linear-gradient(to bottom, #f2eff6, #f5f3f8, #f8f7fb, #fbfbfd, #ffffff)" }}>
                 <div style={{ height: "100px", overflow: "hidden" }} >
                     <svg viewBox="0 0 500 150" preserveAspectRatio="none" style={{ height: "100%", width: "100%" }}>
                         <path d="M-3.67,64.63 C128.95,35.02 332.67,70.55 502.54,52.78 L500.00,150.00 L0.00,150.00 Z" style={{ stroke: 'none', fill: "#F2EFF6" }}>
@@ -297,8 +297,8 @@ const Home = (props) => {
                     </Grid>
                 </Container>
             </Box>
-            <Box sx={{ mt: 20, minHeight: "100vh", }}>
-                <Container>
+            <Box id="HowItWorks" sx={{ mt: 10, minHeight: "100vh", }}>
+                <Container sx={{pt:10}}>
                     <Typography sx={{ fontSize: '30px', fontWeight: '400' }}>
                         How It Works
                     </Typography>
@@ -318,13 +318,13 @@ const Home = (props) => {
                                     },
                                 }}
                                 sx={{
-                                    "& button": { border: '2px solid transparent' },
+                                    "& button": { border: '2px solid transparent', },
                                     "& button:hover": {
                                         borderTop: '2px solid #68D9CF',
                                         borderLeft: '2px solid #68D9CF',
                                         borderBottom: '2px solid #68D9CF'
                                     },
-                                    "& button:focus": {
+                                    "& button[aria-selected='true']": {
                                         borderTop: '2px solid #68D9CF',
                                         borderLeft: '2px solid #68D9CF',
                                         borderBottom: '2px solid #68D9CF',
@@ -362,13 +362,13 @@ const Home = (props) => {
                 </Container>
             </Box >
 
-            <Box sx={{ mt: 20, width: '100%', backgroundImage: "linear-gradient(to bottom, #F7FBFE, #f9fcfe, #fbfcfe, #fdfdfe, #fefefe)" }}>
+            <Box sx={{ mt: 40, width: '100%', backgroundImage: "linear-gradient(to bottom, #F7FBFE, #f9fcfe, #fbfcfe, #fdfdfe, #fefefe)" }}>
                 <Container sx={{ pt: 10, }}>
                     <Typography sx={{ fontSize: '30px', fontWeight: '400' }}>
-                        How It Works
+                        AutoML Products
                     </Typography>
                     <Typography sx={{ fontSize: '40px', fontWeight: '600' }}>
-                        Fully automated machine learning. Just bring your tabular data.
+                        Accomplish all your data innovation objectives
                     </Typography>
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
@@ -434,8 +434,8 @@ const Home = (props) => {
 
                     <textarea
                         placeholder="Send us a note..."
-                        onMouseEnter={() => 
-                            !didFocus?setDidHover(true):null
+                        onMouseEnter={() =>
+                            !didFocus ? setDidHover(true) : null
                         }
                         onMouseLeave={() => setDidHover(false)}
                         onFocus={() => {
@@ -443,18 +443,18 @@ const Home = (props) => {
                             setDidFocus(true)
                         }}
                         onBlur={() => setDidFocus(false)}
-                        onChange={(e)=>setMessage(e.target.value)}
+                        onChange={(e) => setMessage(e.target.value)}
                         rows={8}
                         style={{
                             marginTop: '30px',
                             width: "100%",
                             border: !didHover ? didFocus ? '2px solid #E40088' : '2px solid #E5E5E5' : '2px solid #000',
-                            outline:'none',
+                            outline: 'none',
                             borderRadius: 0,
-                            fontSize:"16px",
-                            color:message?"#000":"#555555",
-                            fontWeight:"400",
-                            padding:15,
+                            fontSize: "16px",
+                            color: message ? "#000" : "#555555",
+                            fontWeight: "400",
+                            padding: 15,
                             fontFamily: ['"Spartan"', 'Sans-serif'].join(','),
                         }}
                     >

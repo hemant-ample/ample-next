@@ -3,6 +3,7 @@ import { Button, Menu, MenuItem } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Link from 'next/link'
+import { Link as ScrollLink } from 'react-scroll'
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -87,14 +88,6 @@ const ProductsDrop = () => {
             text: 'AutoML Clustering - Gain deep insights about your customers',
             link: '/clustering'
         },
-        {
-            text: 'Why Ample AI',
-            link: '/#'
-        },
-        {
-            text: 'How it works',
-            link: '/#'
-        },
     ];
 
 
@@ -156,13 +149,23 @@ const ProductsDrop = () => {
             >
                 {
                     products.map(prod => (
-                        <Link href={prod.link} style={{textDecoration:'none'}}>
+                        <Link href={prod.link} style={{ textDecoration: 'none' }}>
                             <MenuItem key={prod.text} disableRipple onClick={handleClose}>
                                 {prod.text}
                             </MenuItem>
                         </Link>
                     ))
                 }
+                <ScrollLink style={{ cursor: 'pointer', fontSize: '13px', fontWeight: 600 }} smooth={true} to="WhyAmple">
+                    <MenuItem disableRipple onClick={handleClose}>
+                        Why Ample AI
+                    </MenuItem>
+                </ScrollLink>
+                <ScrollLink style={{ cursor: 'pointer', fontSize: '13px', fontWeight: 600 }} smooth={true} to="HowItWorks">
+                    <MenuItem disableRipple onClick={handleClose}>
+                        How it works
+                    </MenuItem>
+                </ScrollLink>
             </StyledMenu>
 
             <Button

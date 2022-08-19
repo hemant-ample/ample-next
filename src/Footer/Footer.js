@@ -4,6 +4,7 @@ import AmpleLogo from '../../assets/AmpleLogo.svg'
 import Image from 'next/Image'
 import CopyrightIcon from '@mui/icons-material/Copyright';
 import Link from 'next/Link'
+import { Link as ScrollLink } from 'react-scroll'
 const Footer = () => {
     const products = [
         {
@@ -17,14 +18,6 @@ const Footer = () => {
         {
             text: 'AutoML Clustering - Gain deep insights about your customers',
             link: '/clustering'
-        },
-        {
-            text: 'Why Ample AI',
-            link: '/#'
-        },
-        {
-            text: 'How it works',
-            link: '/#'
         },
     ];
 
@@ -83,10 +76,12 @@ const Footer = () => {
                                     {
                                         products.map(prod => (
                                             <Link href={prod.link} key={prod.text}>
-                                                <Typography sx={{ fontSize: '13px', fontWeight: "600",cursor:'pointer' }}>{prod.text}</Typography>
+                                                <Typography sx={{ fontSize: '13px', fontWeight: "600", cursor: 'pointer' }}>{prod.text}</Typography>
                                             </Link>
                                         ))
                                     }
+                                    <ScrollLink style={{ cursor: 'pointer', fontSize: '13px',fontWeight: 600 }} smooth={true} to="WhyAmple">Why Ample AI</ScrollLink>
+                                    <ScrollLink style={{ cursor: 'pointer', fontSize: '13px',fontWeight: 600 }} smooth={true} to="HowItWorks">How it works</ScrollLink>
                                 </Stack>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={4} xl={4}>
@@ -97,7 +92,7 @@ const Footer = () => {
                                     {
                                         resources.map(res => (
                                             <Link href={res.link} key={res.text}>
-                                                <Typography sx={{ fontSize: '13px', fontWeight: "600",cursor:'pointer' }}>{res.text}</Typography>
+                                                <Typography sx={{ fontSize: '13px', fontWeight: "600", cursor: 'pointer' }}>{res.text}</Typography>
                                             </Link>))
                                     }
                                 </Stack>
@@ -110,7 +105,7 @@ const Footer = () => {
                                     {
                                         company.map(comp => (
                                             <Link href={comp.link} key={comp.text}>
-                                                <Typography sx={{ fontSize: '13px', fontWeight: "600",cursor:'pointer' }}>{comp.text}</Typography>
+                                                <Typography sx={{ fontSize: '13px', fontWeight: "600", cursor: 'pointer' }}>{comp.text}</Typography>
                                             </Link>))
                                     }
                                 </Stack>
